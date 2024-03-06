@@ -23,18 +23,21 @@ class TestBMI(unittest.TestCase):
     def test_underweight_boundary(self):
         self.assertEqual(determine_bmi_category(0), "invalid 0 or negative bmi")
         self.assertEqual(determine_bmi_category(0.1), "Underweight")
+        self.assertEqual(determine_bmi_category(9.2), "Underweight")
         self.assertEqual(determine_bmi_category(18.3), "Underweight")
         self.assertEqual(determine_bmi_category(18.4), "Underweight")
 
     def test_normal_weight_boundary(self):
         self.assertEqual(determine_bmi_category(18.4), "Underweight")
         self.assertEqual(determine_bmi_category(18.5), "Normal weight")
+        self.assertEqual(determine_bmi_category(21.5), "Normal weight")
         self.assertEqual(determine_bmi_category(24.9), "Normal weight")
         self.assertEqual(determine_bmi_category(25), "Overweight")
 
     def test_overweight_boundary(self):
         self.assertEqual(determine_bmi_category(24.9), "Normal weight")
         self.assertEqual(determine_bmi_category(25), "Overweight")
+        self.assertEqual(determine_bmi_category(27.4), "Overweight")
         self.assertEqual(determine_bmi_category(29.9), "Overweight")
         self.assertEqual(determine_bmi_category(30), "Obese")
 
