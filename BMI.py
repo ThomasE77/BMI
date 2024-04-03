@@ -1,4 +1,5 @@
 import unittest
+import subprocess
 
 # Function to calculate BMI
 def calculate_bmi(height_feet, height_inches, weight_pounds):
@@ -20,6 +21,10 @@ def determine_bmi_category(bmi):
         return "invalid 0 or negative bmi"    
     
 class TestBMI(unittest.TestCase):
+    def test_flake8(self):
+        result = subprocess.run(['flake8', 'BMI.py'], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, "Flake8 found issues in BMI.py:\n" + result.stdout)
+
     def test_underweight_boundary(self):
         self.assertEqual(determine_bmi_category(0), "invalid 0 or negative bmi")
         self.assertEqual(determine_bmi_category(0.1), "Underweight")

@@ -35,3 +35,6 @@ jobs:
         if: github.ref == 'refs/tags/release'
         run: |
           # Add your production deployment script here
+      
+      - name: Static Analysis
+        run: flake8 .
