@@ -1,0 +1,37 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install Flask
+          pip install pytest
+
+      - name: Run unit tests
+        run: pytest
+
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/main'
+        run: |
+          # Add your staging deployment script here
+
+      - name: Deploy to production
+        if: github.ref == 'refs/tags/release'
+        run: |
+          # Add your production deployment script here
