@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from BMI import calculate_bmi, determine_bmi_category
+from bmi import calculate_bmi, determine_bmi_category
 
 app = Flask(__name__)
 
@@ -21,4 +21,6 @@ def calculate():
 
 if __name__ == '__main__':
     import pytest
-    pytest.main(['-v', 'BMI.py'])
+    pytest.main(['-v', 'bmi.py'])
+
+    app.run(debug=True)
